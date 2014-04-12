@@ -4,7 +4,7 @@ using System.Collections;
 public class player_arcade : MonoBehaviour {
 
 	public int score;
-	public int timer = 60;
+	int timer = 30;
 	public int time_left;
 	public float start_time;
 	public float time_past;
@@ -20,7 +20,7 @@ public class player_arcade : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		start_time = Time.deltaTime; //get the current time
+		start_time = Time.time; //get the current time
 		score = 0; //start with no points
 		time_left = timer;
 		sessionEnded = false;
