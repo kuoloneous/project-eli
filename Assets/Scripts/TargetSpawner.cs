@@ -17,7 +17,7 @@ public class TargetSpawner : MonoBehaviour {
 
 		//Check if target is hit
 		foreach (GameObject tar in targets) {
-			tar.GetComponent()
+			//tar.GetComponent();
 			   }
 		if (targets.Count == 0) {
 			targetObject = Instantiate(targetObject, RandomPosition(), Quaternion.identity) as GameObject;
