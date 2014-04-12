@@ -3,7 +3,10 @@ using System.Collections;
 
 public class target_arcade : MonoBehaviour {
 
-	CircleCollider2D targetCollider; //the target
+	public CircleCollider2D targetCollider1; //the smallest target
+	public CircleCollider2D targetCollider2; //the target
+	public CircleCollider2D targetCollider3; //the target
+	public CircleCollider2D targetCollider4; //the largest target
 	GameObject Player;
 	player_arcade myPlayer;
 
@@ -19,6 +22,24 @@ public class target_arcade : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		myPlayer.increaseScore (10); //use the player to add to their score
+		Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+		if(targetCollider1.OverlapPoint(mousePosition))			
+		{
+			myPlayer.increaseScore (100); //use the player to add to their score
+		}
+		else if(targetCollider2.OverlapPoint(mousePosition))			
+		{
+			myPlayer.increaseScore (75); //use the player to add to their score
+		}
+		else if(targetCollider3.OverlapPoint(mousePosition))			
+		{
+			myPlayer.increaseScore (50); //use the player to add to their score
+		}
+		else if(targetCollider4.OverlapPoint(mousePosition))			
+		{
+			myPlayer.increaseScore (25); //use the player to add to their score
+		}
+
 	}
 }
