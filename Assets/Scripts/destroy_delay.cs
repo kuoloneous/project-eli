@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class score : MonoBehaviour {
+public class destroy_delay : MonoBehaviour {
+
+	public float delay;
 
 	// Use this for initialization
 	void Start () {
-	
+		delay = 2.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		text_score = score;
+		Destroy (gameObject, delay);
 	}
 }

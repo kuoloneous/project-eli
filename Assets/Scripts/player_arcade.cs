@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class player : MonoBehaviour {
+public class player_arcade : MonoBehaviour {
 
 	public int score;
 	public int timer;
@@ -10,6 +10,10 @@ public class player : MonoBehaviour {
 	public float time_past;
 	public GUIText text_score;
 	public GUIText text_timer;
+
+	public Vector3 target_point; //where the ball hit
+	public Vector3 mouse; //testing mouse points
+	public GameObject point;
 
 	// Use this for initialization
 	void Start () {
@@ -32,10 +36,14 @@ public class player : MonoBehaviour {
 	void OnGUI(){
 		//change the live guitext objects to match the score and text variables
 		text_score.text = score.ToString();
-		text_timer.text = time_left.ToString();
+		text_timer.text = "Seconds Left: " + time_left.ToString();
 	}
 
-	void increaseScore(){
+	void OnMouseDown(){
+		Instantiate (point, Input.mousePosition, Quaternion.identity);
+	}
 
+	public void increaseScore(int pointsToAdd){
+		score += pointsToAdd;
 	}
 }
