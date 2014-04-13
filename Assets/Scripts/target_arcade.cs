@@ -48,7 +48,7 @@ public class target_arcade : MonoBehaviour {
 		{
 			myPlayer.increaseScore (75); //use the player to add to their score
 			GameObject obj = Instantiate(explosion, mousePosition, Quaternion.identity) as GameObject;
-			explode(Color.yellow, obj);
+			explode(Color.magenta, obj);
 			myPlayer.setCombo(0);
 		}
 		else if(targetCollider3.OverlapPoint(mousePosition))			

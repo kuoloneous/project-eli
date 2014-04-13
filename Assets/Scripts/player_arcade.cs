@@ -75,7 +75,7 @@ public class player_arcade : MonoBehaviour {
 			textPraise.text = "Perfect!";
 		}
 		else if(combo > 5){
-			textPraise.text = "Balls to the Wall!";
+			textPraise.text = "Unstoppable!";
 		}
 
 		if (prevCombo > combo && prevCombo > 4) {
