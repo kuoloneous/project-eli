@@ -22,6 +22,6 @@ public class crazyColor : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		textObject.text = "Clicked";
+		//textObject.text = "Clicked";
 	}
 }

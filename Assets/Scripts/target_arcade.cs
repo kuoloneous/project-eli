@@ -8,7 +8,7 @@ public class target_arcade : MonoBehaviour {
 	public CircleCollider2D targetCollider3; //the target
 	public CircleCollider2D targetCollider4; //the largest target
 	public AudioSource hitSound;
-	public ParticleSystem explosion;
+	public GameObject explosion;
 	bool isHit;
 
 	GameObject Player;
@@ -31,35 +31,40 @@ public class target_arcade : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		mousePosition.z = -5f;
 
 		if(targetCollider1.OverlapPoint(mousePosition))			
 		{
 			myPlayer.increaseScore (100); //use the player to add to their score
-			explode(Color.red);
+			GameObject obj = Instantiate(explosion, mousePosition, Quaternion.identity) as GameObject;
+			explode(Color.red, obj);
 		}
 		else if(targetCollider2.OverlapPoint(mousePosition))			
 		{
 			myPlayer.increaseScore (75); //use the player to add to their score
-			explode(Color.yellow);
+			GameObject obj = Instantiate(explosion, mousePosition, Quaternion.identity) as GameObject;
+			explode(Color.yellow, obj);
 		}
 		else if(targetCollider3.OverlapPoint(mousePosition))			
 		{
 			myPlayer.increaseScore (50); //use the player to add to their score
-			explode(Color.blue);
+			GameObject obj = Instantiate(explosion, mousePosition, Quaternion.identity) as GameObject;
+			explode(Color.blue, obj);
 		}
 		else if(targetCollider4.OverlapPoint(mousePosition))			
 		{
 			myPlayer.increaseScore (25); //use the player to add to their score
-			explode(Color.white);
+			GameObject obj = Instantiate(explosion, mousePosition, Quaternion.identity) as GameObject;
+			explode(Color.white, obj);
 		}
 
 	}
 
-	void explode(Color ringColor){
+	void explode(Color ringColor, GameObject obj){
 		hitSound.Play();
-		explosion.startColor = ringColor;
-		explosion.Play();
+		obj.GetComponent<ParticleSystem>().startColor = ringColor;
+		obj.GetComponent<ParticleSystem>().Play();
 		isHit = true;
 		
 	}
