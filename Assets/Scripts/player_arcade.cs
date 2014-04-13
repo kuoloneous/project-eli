@@ -4,6 +4,8 @@ using System.Collections;
 public class player_arcade : MonoBehaviour {
 
 	public int score;
+	int combo;
+	int prevCombo;
 	int timer = 30;
 	public int time_left;
 	public float start_time;
@@ -13,7 +15,8 @@ public class player_arcade : MonoBehaviour {
 	public GUIText text_timer;
 	public GUIText text_high;
 	public GUIText text_session;
-
+	public GUIText textCombo;
+	public GUIText textPraise;
 	public Vector3 target_point; //where the ball hit
 	public Vector3 mouse; //testing mouse points
 
@@ -39,6 +42,7 @@ public class player_arcade : MonoBehaviour {
 			time_past = Time.time - start_time; //get time elapsed
 			time_left = Mathf.CeilToInt(timer - time_past); //make into an int 
 		}
+
 	}
 
 	void OnGUI(){
@@ -50,6 +54,44 @@ public class player_arcade : MonoBehaviour {
 			text_high.text = "High Score: " + PlayerPrefs.GetInt("HighScore").ToString();
 			text_session.text = "Session Score: " + score.ToString();
 		}
+
+		if (combo > 1) {
+			textCombo.text = combo.ToString () + " Combo";
+		} else {
+			textCombo.text = "";
+			textPraise.text = "";
+		}
+		
+		if(combo == 2){
+			textPraise.text = "Nice!";		
+		}
+		else if(combo == 3){
+			textPraise.text = "Great!";
+		}
+		else if(combo == 4){
+			textPraise.text = "Excellent!";
+		}
+		else if(combo == 5){
+			textPraise.text = "Perfect!";
+		}
+		else if(combo > 5){
+			textPraise.text = "Balls to the Wall!";
+		}
+
+		if (prevCombo > combo && prevCombo > 4) {
+			textPraise.text = "COMBO BREAKER!";
+		}
+
+	}
+
+	public void setCombo(int num){
+		prevCombo = combo;
+		combo = num;
+	}
+
+	public void incrementCombo(){
+		prevCombo = combo;
+		combo++;
 	}
 
 	public void increaseScore(int pointsToAdd){

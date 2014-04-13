@@ -5,11 +5,13 @@ public class TargetSpawner : MonoBehaviour {
 
 	public GameObject targetObject;
 	public ArrayList targets;
+	GameObject Player;
+	player_arcade myPlayer;
 	// Use this for initialization
 	void Start () {
 		targets = new ArrayList();
-		//targetObject.transform.position = RandomPosition ();
-		//targets.Add (targetObject);
+		Player = GameObject.Find ("Player");
+		myPlayer = Player.GetComponent <player_arcade>(); //need to access the player
 	}
 	
 	// Update is called once per frame
@@ -23,7 +25,7 @@ public class TargetSpawner : MonoBehaviour {
 
 			}
 		}
-		if (targets.Count == 0) {
+		if (targets.Count == 0 && myPlayer.sessionEnded == false) {
 			targetObject = Instantiate(Resources.Load("Target"), RandomPosition(), Quaternion.identity) as GameObject;
 			FixPosition(targetObject);
 			targets.Add(targetObject);

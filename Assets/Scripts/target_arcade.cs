@@ -19,11 +19,14 @@ public class target_arcade : MonoBehaviour {
 		isHit = false;
 		Player = GameObject.Find ("Player");
 		myPlayer = Player.GetComponent <player_arcade>(); //need to access the player
+
+		//textCombo = GameObject.Find("text_combo").GetComponent<GUIText> ();
+		//textPraise = GameObject.Find ("text_praise").GetComponent<GUIText> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	public bool getIsHit(){
@@ -39,24 +42,28 @@ public class target_arcade : MonoBehaviour {
 			myPlayer.increaseScore (100); //use the player to add to their score
 			GameObject obj = Instantiate(explosion, mousePosition, Quaternion.identity) as GameObject;
 			explode(Color.red, obj);
+			myPlayer.incrementCombo();
 		}
 		else if(targetCollider2.OverlapPoint(mousePosition))			
 		{
 			myPlayer.increaseScore (75); //use the player to add to their score
 			GameObject obj = Instantiate(explosion, mousePosition, Quaternion.identity) as GameObject;
 			explode(Color.yellow, obj);
+			myPlayer.setCombo(0);
 		}
 		else if(targetCollider3.OverlapPoint(mousePosition))			
 		{
 			myPlayer.increaseScore (50); //use the player to add to their score
 			GameObject obj = Instantiate(explosion, mousePosition, Quaternion.identity) as GameObject;
 			explode(Color.blue, obj);
+			myPlayer.setCombo(0);
 		}
 		else if(targetCollider4.OverlapPoint(mousePosition))			
 		{
 			myPlayer.increaseScore (25); //use the player to add to their score
 			GameObject obj = Instantiate(explosion, mousePosition, Quaternion.identity) as GameObject;
 			explode(Color.white, obj);
+			myPlayer.setCombo(0);
 		}
 
 	}
